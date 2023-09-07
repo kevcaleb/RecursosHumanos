@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.LookAndFeel;
 
 
 namespace RecursosHumanos.Configuracion.Usuarios
@@ -35,7 +36,6 @@ namespace RecursosHumanos.Configuracion.Usuarios
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-
             IniciarSesion();
         }
 
@@ -64,17 +64,18 @@ namespace RecursosHumanos.Configuracion.Usuarios
                             MessageBox.Show("Usuario Incorrecto");
                         }
                         else if (resultado == 1)//Este Resultado determina que el usuario y contrasena coinciden
-                        {
-                            this.Close();
-                            frmPrincipal principal = new frmPrincipal();
+                        {                                                    
                             Global.IDUsuario = txtUsuario.Text.Trim();
-                            DataTable datosUsuario = datos.ConsultaTabla("[dbo].[p_ConsultarEmpleadoPorIdUsuario]", "@Id_Usuario", Global.IDUsuario);
+                            DataTable datosUsuario = datos.ConsultaTabla("[dbo].[p_ConsultarUsuarioPorIdTodo]", "@Id_Usuario", Global.IDUsuario);
                             if (datosUsuario.Rows.Count >0)
                             {
                                 Global.NumeroIdentidad = datosUsuario.Rows[0].ItemArray[datosUsuario.Columns["Numero de Identidad"].Ordinal].ToString();
+                                Global.Puesto = datosUsuario.Rows[0].ItemArray[datosUsuario.Columns["Puesto"].Ordinal].ToString();
                             }
-
+                            Global.ComprobarCarpetaTemporal();
+                            frmPrincipal principal = new frmPrincipal();
                             principal.Show();
+                            this.Close();
                         }
                         else
                         {

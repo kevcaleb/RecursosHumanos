@@ -15,7 +15,7 @@ namespace RecursosHumanos
         public splPantallaCarga()
         {
             InitializeComponent();
-            this.labelControl1.Text = "Copyright © 1998-" + DateTime.Now.Year.ToString();
+            this.labelControl1.Text = "Derechos Reservados © Castillo RRHH " + DateTime.Now.Year.ToString();
         }
         
         #region Overrides
@@ -42,12 +42,7 @@ namespace RecursosHumanos
             this.Hide();
             frmInicioSesion inicioSesion = new frmInicioSesion();
             inicioSesion.Show();
-
         }
-
-        private void pictureEdit2_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

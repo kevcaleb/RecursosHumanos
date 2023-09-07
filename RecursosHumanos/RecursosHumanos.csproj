@@ -54,10 +54,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>52100E330366E40AEA1E15AD097082DE875D7662</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CE8AB37BA139BDE6D9DCB18D7627257B6CF7F80A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>RecursosHumanos_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>RecursosHumanos_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -70,15 +70,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v18.2" />
+    <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v18.2" />
+    <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dialogs.v18.2.Core, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v18.2" />
     <Reference Include="DevExpress.Sparkline.v18.2.Core" />
+    <Reference Include="DevExpress.Utils.v18.2.UI, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraDialogs.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.2" />
     <Reference Include="DevExpress.Printing.v18.2.Core" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v18.2.Extensions, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -93,6 +110,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuracion\Usuarios\ControlPrivilegios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Usuarios\ControlPrivilegios.Designer.cs">
+      <DependentUpon>ControlPrivilegios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Configuracion\Usuarios\frmInicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,17 +125,59 @@
     <Compile Include="Datos.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Empleados\Consultas\ConsultaVacacionesEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Consultas\ConsultaVacacionesEmpleado.Designer.cs">
+      <DependentUpon>ConsultaVacacionesEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Reportes\ImpresionPermiso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Reportes\ImpresionPermiso.Designer.cs">
+      <DependentUpon>ImpresionPermiso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Reportes\ReportePermiso.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Empleados\Reportes\ReportePermiso.Designer.cs">
+      <DependentUpon>ReportePermiso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\ExcepcionVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\ExcepcionVacaciones.Designer.cs">
+      <DependentUpon>ExcepcionVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\RechazoSolicitudVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\RechazoSolicitudVacaciones.Designer.cs">
+      <DependentUpon>RechazoSolicitudVacaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleados\ControlEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Empleados\ControlEmpleados.Designer.cs">
       <DependentUpon>ControlEmpleados.cs</DependentUpon>
     </Compile>
-    <Compile Include="Empleados\ControlPermisos.cs">
+    <Compile Include="Empleados\Permisos\ControlPermisos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Empleados\ControlPermisos.Designer.cs">
+    <Compile Include="Empleados\Permisos\ControlPermisos.Designer.cs">
       <DependentUpon>ControlPermisos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Planillas\ControlPlanillas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Planillas\ControlPlanillas.Designer.cs">
+      <DependentUpon>ControlPlanillas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Usuarios\ControlUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Usuarios\ControlUsuarios.Designer.cs">
+      <DependentUpon>ControlUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Empleados\EdicionEmpleado.cs">
       <SubType>Form</SubType>
@@ -120,11 +185,53 @@
     <Compile Include="Empleados\EdicionEmpleado.Designer.cs">
       <DependentUpon>EdicionEmpleado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Empleados\PermisoSalida.cs">
+    <Compile Include="Configuracion\Usuarios\EdicionUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Empleados\PermisoSalida.Designer.cs">
-      <DependentUpon>PermisoSalida.cs</DependentUpon>
+    <Compile Include="Configuracion\Usuarios\EdicionUsuario.Designer.cs">
+      <DependentUpon>EdicionUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Reportes\ImpresionSolicitudVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Reportes\ImpresionSolicitudVacaciones.Designer.cs">
+      <DependentUpon>ImpresionSolicitudVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Reportes\ReporteSolicitudVacaciones.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Empleados\Reportes\ReporteSolicitudVacaciones.Designer.cs">
+      <DependentUpon>ReporteSolicitudVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\SolicitudEspecialVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\SolicitudEspecialVacaciones.Designer.cs">
+      <DependentUpon>SolicitudEspecialVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\SuspensionSolicitudVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\SuspensionSolicitudVacaciones.Designer.cs">
+      <DependentUpon>SuspensionSolicitudVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Permisos\SolicitudPermiso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Permisos\SolicitudPermiso.Designer.cs">
+      <DependentUpon>SolicitudPermiso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\ControlVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\ControlVacaciones.Designer.cs">
+      <DependentUpon>ControlVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\SolicitudVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empleados\Vacaciones\SolicitudVacaciones.Designer.cs">
+      <DependentUpon>SolicitudVacaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -141,23 +248,68 @@
     <Compile Include="splPantallaCarga.Designer.cs">
       <DependentUpon>splPantallaCarga.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Configuracion\Usuarios\ControlPrivilegios.resx">
+      <DependentUpon>ControlPrivilegios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Configuracion\Usuarios\frmInicioSesion.resx">
       <DependentUpon>frmInicioSesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Datos.resx">
       <DependentUpon>Datos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Consultas\ConsultaVacacionesEmpleado.resx">
+      <DependentUpon>ConsultaVacacionesEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Reportes\ImpresionPermiso.resx">
+      <DependentUpon>ImpresionPermiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Reportes\ReportePermiso.resx">
+      <DependentUpon>ReportePermiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Vacaciones\ExcepcionVacaciones.resx">
+      <DependentUpon>ExcepcionVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Vacaciones\RechazoSolicitudVacaciones.resx">
+      <DependentUpon>RechazoSolicitudVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Empleados\ControlEmpleados.resx">
       <DependentUpon>ControlEmpleados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Empleados\ControlPermisos.resx">
+    <EmbeddedResource Include="Empleados\Permisos\ControlPermisos.resx">
       <DependentUpon>ControlPermisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Planillas\ControlPlanillas.resx">
+      <DependentUpon>ControlPlanillas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracion\Usuarios\ControlUsuarios.resx">
+      <DependentUpon>ControlUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empleados\EdicionEmpleado.resx">
       <DependentUpon>EdicionEmpleado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Empleados\PermisoSalida.resx">
-      <DependentUpon>PermisoSalida.cs</DependentUpon>
+    <EmbeddedResource Include="Configuracion\Usuarios\EdicionUsuario.resx">
+      <DependentUpon>EdicionUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Reportes\ImpresionSolicitudVacaciones.resx">
+      <DependentUpon>ImpresionSolicitudVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Reportes\ReporteSolicitudVacaciones.resx">
+      <DependentUpon>ReporteSolicitudVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Vacaciones\SolicitudEspecialVacaciones.resx">
+      <DependentUpon>SolicitudEspecialVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Vacaciones\SuspensionSolicitudVacaciones.resx">
+      <DependentUpon>SuspensionSolicitudVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Permisos\SolicitudPermiso.resx">
+      <DependentUpon>SolicitudPermiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Vacaciones\ControlVacaciones.resx">
+      <DependentUpon>ControlVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleados\Vacaciones\SolicitudVacaciones.resx">
+      <DependentUpon>SolicitudVacaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
@@ -171,6 +323,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="splPantallaCarga.resx">
       <DependentUpon>splPantallaCarga.cs</DependentUpon>
@@ -186,6 +339,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RecursosHumanos_1_TemporaryKey.pfx" />
     <None Include="RecursosHumanos_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +353,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Recursos\Imagenes\Logo_Geología y Minas.png" />
+    <Content Include="Recursos\Logo_Geología y Minas.png" />
+    <None Include="Resources\Logo_Geología y Minas.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

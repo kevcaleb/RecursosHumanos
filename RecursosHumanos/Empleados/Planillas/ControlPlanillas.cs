@@ -11,16 +11,11 @@ using DevExpress.XtraBars;
 
 namespace RecursosHumanos.Empleados
 {
-    public partial class ControlPermisos : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class ControlPlanillas : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public ControlPermisos()
+        public ControlPlanillas()
         {
             InitializeComponent();
-        }
-
-        private void ribbon_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

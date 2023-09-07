@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using DevExpress.XtraBars;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraBars;
 
 namespace RecursosHumanos.Empleados
 {
@@ -17,7 +11,8 @@ namespace RecursosHumanos.Empleados
         bool EsNuevo = false;
         Datos datos = new Datos();
 
-       
+        public string Identidad { get; set; }
+
         /// <summary>
         /// Creacion de nuevos empleados
         /// </summary>
@@ -26,6 +21,7 @@ namespace RecursosHumanos.Empleados
             InitializeComponent();
             EsNuevo = true;
             this.Text = "Creción de Empleado";
+            Identidad = "";
             CargarDatosControles();
         }
 
@@ -40,13 +36,13 @@ namespace RecursosHumanos.Empleados
         {
             InitializeComponent();
             EsNuevo = false;
+            Identidad = id;
             CargarDatosControles();
             CargarDatosEmpleado(id);
             this.Text = "Edición de Empleado - " + txteNombreEmpleado.Text;
             txteNumeroIdentidad.ReadOnly = true;
-        }
 
-       
+        }
 
         private void CargarDatosControles()
         {
@@ -59,6 +55,7 @@ namespace RecursosHumanos.Empleados
             CargarCarreraProfesional();
             CargarFondos();
             CargarUnidad();
+            CargarUsuariosDisponibles();
         }
 
 
@@ -83,7 +80,7 @@ namespace RecursosHumanos.Empleados
                     txteDiplomas.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Diplomados Cursados"].Ordinal].ToString();
                     txteDescripcionDiplomas.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Descripcion de Diplomados"].Ordinal].ToString();
                     txteDescripcionNivelMedio.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Descripcion de Nivel Medio"].Ordinal].ToString();
-                    dteFechaIngreso.EditValue = dataTable.Rows[0].ItemArray[dataTable.Columns["Fecha de Ingreso"].Ordinal];
+                    dteFechaIngreso.EditValue = dataTable.Rows[0].ItemArray[dataTable.Columns["Fecha Historico"].Ordinal];
                     dteFechaNacimiento.EditValue = dataTable.Rows[0].ItemArray[dataTable.Columns["Fecha de Nacimiento"].Ordinal];
                     txtNivelMedio.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Nivel Medio"].Ordinal].ToString();
                     txteNombreConyugue.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Nombre de Conyugue"].Ordinal].ToString();
@@ -96,12 +93,15 @@ namespace RecursosHumanos.Empleados
                     lkePuestos.EditValue = dataTable.Rows[0].ItemArray[dataTable.Columns["Codigo_Puesto"].Ordinal];
                     lkeTipoSangre.EditValue = dataTable.Rows[0].ItemArray[dataTable.Columns["Codigo_Tipo_Sangre"].Ordinal];
                     lkeGenero.EditValue = dataTable.Rows[0].ItemArray[dataTable.Columns["Codigo_Genero"].Ordinal];
+                    lkeUnidad.EditValue = dataTable.Rows[0].ItemArray[dataTable.Columns["Codigo_Unidad"].Ordinal];
+                    lkeUsuario.EditValue = dataTable.Rows[0].ItemArray[dataTable.Columns["Id Usuario"].Ordinal];
                     txteCertificacionesCursadas.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Certificaciones Cursadas"].Ordinal].ToString();
                     txteDescripcionCertificaciones.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Descripcion de Certificaciones"].Ordinal].ToString();
                     txteCantidadHijosCasa.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Hijos en Casa"].Ordinal].ToString();
                     txteNivelPrimario.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Nivel Primario"].Ordinal].ToString();
                     txteDireccionDomiciliaria.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Direccion Domiciliaria"].Ordinal].ToString();
                     txteCorreoPersonal.Text = dataTable.Rows[0].ItemArray[dataTable.Columns["Correo Personal"].Ordinal].ToString();
+
                 }
                 else
                 {
@@ -127,10 +127,10 @@ namespace RecursosHumanos.Empleados
                 lkeTipoSangre.Properties.DisplayMember = "Tipo";
                 lkeTipoSangre.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -142,10 +142,10 @@ namespace RecursosHumanos.Empleados
                 lkeUnidad.Properties.DisplayMember = "Nombre de la Unidad";
                 lkeUnidad.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -157,10 +157,10 @@ namespace RecursosHumanos.Empleados
                 lkeGenero.Properties.DisplayMember = "Genero";
                 lkeGenero.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -172,10 +172,10 @@ namespace RecursosHumanos.Empleados
                 lkeNivelUniversitario.Properties.DisplayMember = "Descripcion Nivel Universitario";
                 lkeNivelUniversitario.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -187,10 +187,10 @@ namespace RecursosHumanos.Empleados
                 lkeEstadoCivil.Properties.DisplayMember = "Estado Civil";
                 lkeEstadoCivil.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -202,10 +202,10 @@ namespace RecursosHumanos.Empleados
                 lkeMunicipios.Properties.DisplayMember = "Municipios";
                 lkeMunicipios.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -217,10 +217,10 @@ namespace RecursosHumanos.Empleados
                 lkePuestos.Properties.DisplayMember = "Puestos";
                 lkePuestos.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -232,10 +232,10 @@ namespace RecursosHumanos.Empleados
                 lkeCarreraProfesional.Properties.DisplayMember = "Carrera";
                 lkeCarreraProfesional.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -247,10 +247,10 @@ namespace RecursosHumanos.Empleados
                 lkeFondos.Properties.DisplayMember = "Fondo";
                 lkeFondos.Properties.ValueMember = "ID";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                principal.MostrarError(ex.Message);
             }
         }
 
@@ -262,43 +262,88 @@ namespace RecursosHumanos.Empleados
                 if (txteNumeroIdentidad.Text == "")
                 {
                     resultado = false;
+                    txteNumeroIdentidad.Focus();
                 }
-                if (txteRelojMarcador.Text == "")
+                else if (txteRelojMarcador.Text == "")
                 {
                     resultado = false;
                 }
-                if (txteNombreEmpleado.Text == "")
+                else if (txteNombreEmpleado.Text == "")
                 {
                     resultado = false;
                 }
-                if (txteTelefonoCelular.Text == "")
+                else if (txteTelefonoCelular.Text == "")
                 {
                     resultado = false;
                 }
-                if (dteFechaNacimiento.EditValue == null)
+                else if (dteFechaNacimiento.EditValue == null)
                 {
                     resultado = false;
                 }
-                if (dteFechaIngreso.EditValue == null)
+                else if (dteFechaIngreso.EditValue == null)
                 {
                     resultado = false;
                 }
-                if (txteDireccionDomiciliaria.Text == "")
+                else if (txteDireccionDomiciliaria.Text == "")
                 {
                     resultado = false;
+                }
+                else if (dteFechaIngreso.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkeUsuario.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkeTipoSangre.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkeEstadoCivil.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkeMunicipios.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkeGenero.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkePuestos.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkeUnidad.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkeFondos.EditValue == null)
+                {
+                    resultado = false;
+                }
+                else if (lkeTipoSangre.EditValue == null)
+                {
+                    resultado = false;
+                }
+
+                if (resultado == false)
+                {
+                    principal.MostrarError("Ingrese todos los campos obligatorios.");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                principal.MostrarError(ex.Message);
             }
             return resultado;
         }
 
         private void GuardarNuevo()
         {
-            try
+            if (ValidarRequerimientos())
             {
                 datos.Procedimiento("[dbo].[p_InsertarEmpleado]",
                     "@Numero_Identidad", txteNumeroIdentidad.Text,
@@ -306,20 +351,19 @@ namespace RecursosHumanos.Empleados
                     "@Nombre_Empleado", txteNombreEmpleado.Text,
                     "@Telefono_Celular", txteTelefonoCelular.Text,
                     "@Telefono_fijo", txteTelefonoFijo.Text,
-                    "Correo_Oficial", txtCorreoOficial.Text,
+                    "@Correo_Oficial", txtCorreoOficial.Text,
                     "@Correo_Personal", txteCorreoPersonal.Text,
                     "@Total_Personas_Casa", txteNumeroPersonasCasa.Text,
                     "@Total_Personas_Tercera", txteNumeroPersonasTercera.Text,
                     "@Certificaciones_Cursadas", txteCertificacionesCursadas.Text,
                     "@Descripcion_Certificaciones", txteDescripcionCertificaciones.Text,
-                    "@Diplomados_Cursados", txteDescripcionDiplomas.Text,
+                    "@Diplomados_Cursados", txteDiplomas.Text,
                     "@Descripcion_Diplomados", txteDescripcionDiplomas.Text,
                     "@Otros_Conocimientos", txteOtrosConocimientos.Text,
                     "@Fecha_Nacimiento", dteFechaNacimiento.EditValue,
-                    "@Fecha_Ingreso", dteFechaIngreso.EditValue,
                     "@Direccion_Domiciliaria", txteDireccionDomiciliaria.Text,
                     "@Nombre_Conyugue", txteNombreConyugue.Text,
-                    "@Telefono_Conyugue", txteCantidadHijosCasa.Text,
+                    "@Telefono_Conyugue", txteTelefonoConyugue.Text,
                     "@Cantidad_Hijos_Casa", txteCantidadHijosCasa.Text,
                     "@Nivel_Medio", txtNivelMedio.Text,
                     "@Descripcion_Nivel_Medio", txteDescripcionNivelMedio.Text,
@@ -332,12 +376,10 @@ namespace RecursosHumanos.Empleados
                     "@Codigo_Municipio_Nacimiento", lkeMunicipios.EditValue,
                     "@Codigo_Puesto", lkePuestos.EditValue,
                     "@Codigo_Fondos", lkeFondos.EditValue,
-                    "@Codigo_Unidad", lkeUnidad.EditValue
-                    );
-            }
-            catch (Exception ex)
-            {
-                principal.MostrarError(ex.Message);
+                    "@Codigo_Unidad", lkeUnidad.EditValue,
+                    "@Id_Usuario_Creador", Global.IDUsuario,
+                    "@Id_Usuario", lkeUsuario.EditValue,
+                    "@Fecha_Historico", dteFechaIngreso.EditValue);
             }
         }
 
@@ -347,7 +389,7 @@ namespace RecursosHumanos.Empleados
             {
                 if (MessageBox.Show("¿Esta seguro que desea modificar con estos datos?", "Confirmar Actualización", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    
+
                     datos.Procedimiento("[dbo].[p_ModificarEmpleado]",
                         "@Numero_Identidad", txteNumeroIdentidad.Text,
                         "@Numero_de_reloj_Marcador", txteRelojMarcador.Text,
@@ -364,10 +406,10 @@ namespace RecursosHumanos.Empleados
                         "@Descripcion_Diplomados", txteDescripcionDiplomas.Text,
                         "@Otros_Conocimientos", txteOtrosConocimientos.Text,
                         "@Fecha_Nacimiento", dteFechaNacimiento.EditValue,
-                        "@Fecha_Ingreso", dteFechaIngreso.EditValue,
+                        "@Fecha_Historico", dteFechaIngreso.EditValue,
                         "@Direccion_Domiciliaria", txteDireccionDomiciliaria.Text,
                         "@Nombre_Conyugue", txteNombreConyugue.Text,
-                        "@Telefono_Conyugue", txteCantidadHijosCasa.Text,
+                        "@Telefono_Conyugue", txteTelefonoConyugue.Text,
                         "@Cantidad_Hijos_Casa", txteCantidadHijosCasa.Text,
                         "@Nivel_Medio", txtNivelMedio.Text,
                         "@Descripcion_Nivel_Medio", txteDescripcionNivelMedio.Text,
@@ -380,7 +422,8 @@ namespace RecursosHumanos.Empleados
                         "@Codigo_Municipio_Nacimiento", lkeMunicipios.EditValue,
                         "@Codigo_Puesto", lkePuestos.EditValue,
                         "@Codigo_Fondos", lkeFondos.EditValue,
-                        "@Codigo_Unidad", lkeUnidad.EditValue
+                        "@Codigo_Unidad", lkeUnidad.EditValue,
+                        "@Id_Usuario", lkeUsuario.EditValue
                         );
 
 
@@ -394,41 +437,114 @@ namespace RecursosHumanos.Empleados
             }
         }
 
-        private void bbiGuardar_ItemClick(object sender, ItemClickEventArgs e)
+        private bool Guardar()
         {
+            bool completo = false;
             try
             {
+                int resultado = Convert.ToInt32(datos.ProcedimientoRetorno("[dbo].[p_VerificarRelojMarcador]", "@Numero_de_reloj_Marcador", txteRelojMarcador.Text, "@Resultado"));
 
-
-                if (ValidarRequerimientos() == true)
+                if (Global.ComprobarPrivilegio(22) == true)
                 {
-                    if (EsNuevo == true)//se evalua para 
+                    if (resultado == 0 || Global.editar == 1)//El valor de editar cambia cuando se ejecuta el evento del boton editar a 1, esta inicializado en 0
                     {
-                        GuardarNuevo();
-                        EdicionEmpleado edicionEmpleado = new EdicionEmpleado();
-                        edicionEmpleado.MdiParent = this.MdiParent;
-                        edicionEmpleado.Show();
-                        this.Close();
+                        if (ValidarRequerimientos() == true)
+                        {
+                            if (EsNuevo == true)//se evalua para saber que sobrecarga de metodo se usara
+                            {
+                                GuardarNuevo();
+                                completo = true;
+                            }
+                            else
+                            {
+                                ActualizarExistente();
+                                completo = true;
+                            }
+                            controlEmpleados.Refrescar();
+                        }
                     }
                     else
                     {
-                        ActualizarExistente();
+                        MessageBox.Show("El numero de reloj Marcador ya existe, utilize otro numero");
                     }
-                    controlEmpleados.Refrescar();
                 }
                 else
                 {
-                    principal.MostrarError("Introduzca todos los campos obligatorios.");
+                    principal.MostrarError("El Usuario no cuenta con los privilegios.");
                 }
-
             }
             catch (Exception ex)
             {
                 principal.MostrarError(ex.Message);
-                
+            }
+            return completo;
+        }
+
+        private void bbiCancelar_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void EdicionEmpleado_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CargarUsuariosDisponibles()
+        {
+            try
+            {
+                DataTable tablaResultados = datos.ConsultaTabla("[dbo].[p_ConsultarUsuariosActivosDisponibles]", "@Numero_Identidad", Identidad);
+                lkeUsuario.Properties.DataSource = tablaResultados;
+                lkeUsuario.Properties.DisplayMember = "ID de Usuario";
+                lkeUsuario.Properties.ValueMember = "ID de Usuario";
+                lkeUsuario.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
+        private void bbiGuardarCerrar_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                if (Guardar())
+                {
+                    principal.MostrarExito("Se guardo el empleado con exito");
+                    this.Close();
+                }                
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
+
+        private void bbiGuardarNuevo_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                if (Guardar())
+                {
+                    EdicionEmpleado edicionEmpleado = new EdicionEmpleado();
+                    edicionEmpleado.MdiParent = this.MdiParent;
+                    edicionEmpleado.Show();
+                    principal.MostrarExito("Se guardo el empleado con exito");
+                    this.Close();
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+     
     }
 }

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="INHGEOMIN" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Data Source=DIRECCION\SQLEXPRESS;Initial Catalog=RRHH;Persist Security Info=True;User ID=INHGEOMIN; Password=S0port3*2020</Value>
+      <Value Profile="(Default)">Data Source=CATASTRO\SQLEXPRESS;Initial Catalog=RRHH;Persist Security Info=True;User ID=INHGEOMIN; Password=S0porT3*1934</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlEmpleados));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bbiNuevoEmpleado = new DevExpress.XtraBars.BarButtonItem();
@@ -35,8 +36,12 @@
             this.bbiEliminarEmpleado = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRefrescar = new DevExpress.XtraBars.BarButtonItem();
             this.bbiInactivarEmpleado = new DevExpress.XtraBars.BarButtonItem();
+            this.bbitActivar = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiExportar = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiCargarArchivoEmpleado = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.tncEmpelados = new DevExpress.XtraBars.Navigation.TabPane();
             this.tnpEmpleadosActivos = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.gdcEmpleadosActivos = new DevExpress.XtraGrid.GridControl();
@@ -44,6 +49,9 @@
             this.tnpEmpleadosInactivos = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.gdcEmpleadosInactivos = new DevExpress.XtraGrid.GridControl();
             this.gdvEmpleadosInactivos = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ofdFile = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbiVacacionesDisponibles = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tncEmpelados)).BeginInit();
             this.tncEmpelados.SuspendLayout();
@@ -64,10 +72,14 @@
             this.bbiEditarEmpleado,
             this.bbiEliminarEmpleado,
             this.bbiRefrescar,
-            this.bbiInactivarEmpleado});
+            this.bbiInactivarEmpleado,
+            this.bbitActivar,
+            this.bbiExportar,
+            this.bbiCargarArchivoEmpleado,
+            this.bbiVacacionesDisponibles});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ribbon.MaxItemId = 6;
+            this.ribbon.MaxItemId = 10;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -82,7 +94,6 @@
             this.ribbon.ShowToolbarCustomizeItem = false;
             this.ribbon.Size = new System.Drawing.Size(1226, 175);
             this.ribbon.Toolbar.ShowCustomizeItem = false;
-            this.ribbon.Click += new System.EventHandler(this.ribbon_Click);
             // 
             // bbiNuevoEmpleado
             // 
@@ -124,10 +135,36 @@
             this.bbiInactivarEmpleado.Name = "bbiInactivarEmpleado";
             this.bbiInactivarEmpleado.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiInactivarEmpleado_ItemClick);
             // 
+            // bbitActivar
+            // 
+            this.bbitActivar.Caption = "Activar Empleado";
+            this.bbitActivar.Id = 6;
+            this.bbitActivar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbitActivar.ImageOptions.SvgImage")));
+            this.bbitActivar.Name = "bbitActivar";
+            this.bbitActivar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbitActivar_ItemClick);
+            // 
+            // bbiExportar
+            // 
+            this.bbiExportar.Caption = "Exportar";
+            this.bbiExportar.Id = 7;
+            this.bbiExportar.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiExportar.ImageOptions.SvgImage")));
+            this.bbiExportar.Name = "bbiExportar";
+            this.bbiExportar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiExportar_ItemClick);
+            // 
+            // bbiCargarArchivoEmpleado
+            // 
+            this.bbiCargarArchivoEmpleado.Caption = "Cargar Archivo de Empleado";
+            this.bbiCargarArchivoEmpleado.Id = 8;
+            this.bbiCargarArchivoEmpleado.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiCargarArchivoEmpleado.ImageOptions.SvgImage")));
+            this.bbiCargarArchivoEmpleado.Name = "bbiCargarArchivoEmpleado";
+            this.bbiCargarArchivoEmpleado.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiCargarArchivoEmpleado_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "ribbonPage1";
             // 
@@ -136,10 +173,18 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiNuevoEmpleado);
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiEditarEmpleado);
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiEliminarEmpleado);
+            this.ribbonPageGroup1.ItemLinks.Add(this.bbiExportar);
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiRefrescar);
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiInactivarEmpleado);
+            this.ribbonPageGroup1.ItemLinks.Add(this.bbitActivar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiCargarArchivoEmpleado);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Cargar de Documentos";
             // 
             // tncEmpelados
             // 
@@ -221,7 +266,28 @@
             this.gdvEmpleadosInactivos.Name = "gdvEmpleadosInactivos";
             this.gdvEmpleadosInactivos.OptionsBehavior.Editable = false;
             this.gdvEmpleadosInactivos.OptionsMenu.ShowGroupSummaryEditorItem = true;
+            this.gdvEmpleadosInactivos.OptionsView.ColumnAutoWidth = false;
             this.gdvEmpleadosInactivos.OptionsView.ShowFooter = true;
+            // 
+            // ofdFile
+            // 
+            this.ofdFile.FileName = "ofdFile";
+            this.ofdFile.Filter = "pdf|*.pdf";
+            this.ofdFile.Title = "Carga de Archivos de Empleado";
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.bbiVacacionesDisponibles);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "Consultas";
+            // 
+            // bbiVacacionesDisponibles
+            // 
+            this.bbiVacacionesDisponibles.Caption = "Vacaciones Disponibles";
+            this.bbiVacacionesDisponibles.Id = 9;
+            this.bbiVacacionesDisponibles.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiVacacionesDisponibles.ImageOptions.SvgImage")));
+            this.bbiVacacionesDisponibles.Name = "bbiVacacionesDisponibles";
+            this.bbiVacacionesDisponibles.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiVacacionesDisponibles_ItemClick);
             // 
             // ControlEmpleados
             // 
@@ -268,5 +334,12 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gdvEmpleadosInactivos;
         private DevExpress.XtraBars.BarButtonItem bbiRefrescar;
         private DevExpress.XtraBars.BarButtonItem bbiInactivarEmpleado;
+        private DevExpress.XtraBars.BarButtonItem bbitActivar;
+        private DevExpress.XtraBars.BarButtonItem bbiExportar;
+        private DevExpress.XtraBars.BarButtonItem bbiCargarArchivoEmpleado;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraEditors.XtraOpenFileDialog ofdFile;
+        private DevExpress.XtraBars.BarButtonItem bbiVacacionesDisponibles;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
     }
 }
