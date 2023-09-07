@@ -20,7 +20,7 @@ namespace RecursosHumanos
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(false); ///pRUEBA
             UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Office2019Colorful);
 
             BonusSkins.Register();
